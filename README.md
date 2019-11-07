@@ -1,6 +1,15 @@
 # Minigo
+A fast, small but enough api framework for go.
+
+It is heavily influenced by Gin.
+## Overview
+* Router, group router
+* Request context
+* Handlers
+* Just support json input and output
+* Just suport POST
+* Validate
 ## Installation
-### Import
 > step 1.
 
     go get -u github.com/oldrain/minigo
@@ -8,14 +17,6 @@
 > step 2.
 
     import "github.com/oldrain/minigo"
-
-### Govendor
-> step 1.
-
-    go vendor init
-> step 2.
-
-    govendor fetch github.com/oldrain/minigo
 
 ## Quick start
 > File:
