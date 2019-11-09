@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"net"
 	"strings"
+	"bytes"
 )
 
 type Context struct {
@@ -44,7 +45,7 @@ func (ctx *Context) AbortWithError(code int, msg string) {
 
 // input
 func (ctx *Context) BindJSON(obj interface{}) (err error) {
-	decoder := json.NewDecoder(ctx.Input.Request.Body)
+	decoder := json.NewDecoder(bytes.NewBufferString(ctx.GetInBody()))
 	err = decoder.Decode(obj)
 	return
 }
