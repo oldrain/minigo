@@ -5,11 +5,11 @@ import (
 )
 
 func main() {
-	api := minigo.Default()
+	router := minigo.Default()
 
-	api.Post("/hey", func(ctx *minigo.Context) {
+	router.Post("/hey", func(ctx *minigo.Context) {
 		ctx.JSON("Hi~")
 	})
 
-	_ = api.Run(":9527")
+	_ = router.Run(":9527")
 }
