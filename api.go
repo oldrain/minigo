@@ -25,6 +25,7 @@ func Default() *Api {
 }
 
 func New() *Api {
+	logStart()
 	api := &Api{
 		Router: Router{
 			basePath: "/",
@@ -43,6 +44,7 @@ func New() *Api {
 }
 
 func (api *Api) Run(addr string) (err error) {
+	logRun(addr)
 	err = http.ListenAndServe(addr, api)
 	return
 }

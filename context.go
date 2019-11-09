@@ -57,8 +57,8 @@ func (ctx *Context) SetInHeader(key, value string) {
 	ctx.Input.SetHeader(key, value)
 }
 
-func (ctx *Context) GetInBody() {
-	ctx.Input.GetBody()
+func (ctx *Context) GetInBody() string {
+	return ctx.Input.GetBody()
 }
 
 func (ctx *Context) Method() string {

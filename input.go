@@ -10,6 +10,9 @@ import (
 
 type Input struct {
 	Request *http.Request
+
+	// body
+	body []byte
 }
 
 func (in *Input) GetHeader(key string) string {
@@ -21,6 +24,9 @@ func (in *Input) SetHeader(key, value string) {
 }
 
 func (in *Input) GetBody() string {
-	body, _ := ioutil.ReadAll(in.Request.Body)
-	return string(body)
+	if len(in.body) > 0 {
+		return string(in.body)
+	}
+	in.body, _ = ioutil.ReadAll(in.Request.Body)
+	return string(in.body)
 }

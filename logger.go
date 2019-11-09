@@ -6,6 +6,7 @@ package minigo
 import (
 	"fmt"
 	"time"
+	"log"
 )
 
 func Logger() HandlerFunc {
@@ -24,7 +25,7 @@ func Logger() HandlerFunc {
 		content := fmt.Sprintf("[MINI] %v | %s | %13v | %15s | %s | %s",
 			time2Str(end), colorForStatus(status), latency, clientIP, colorForMethod(method), path)
 
-		fmt.Println(content)
+		printLog(content)
 	}
 }
 
@@ -45,23 +46,24 @@ func colorForMethod(method string) string {
 	return fmt.Sprintf("\033[34m%s\033[0m", method)
 }
 
-func logPlain(args ...interface{}) {
-	fmt.Println(fmt.Sprintf("[%s][Application]%s", timeStr(), fmt.Sprint(args...)))
+func printLog(content string) {
+	log.SetFlags(0)
+	log.Println(content)
 }
 
-func logInfo(s string, args ...interface{}) {
-	fmt.Println(fmt.Sprintf("[%s][\033[32m[%s]\033[0m]", timeStr(), fmt.Sprint(args...)))
+func logStart() {
+	printLog("[MINI] Starting...")
 }
 
-func logRequest(s string, args ...interface{}) {
-	fmt.Println(fmt.Sprintf("[%s][\033[32m[Application Error]\033[0m][%s]%s", timeStr(), s, fmt.Sprint(args...)))
+func logRun(addr string) {
+	printLog(fmt.Sprintf("[MINI] HTTP on %s\n", addr))
 }
 
 func logPrintRoute(httpMethod, absPath string, handlers HandlerFuncChain) {
 	handlerNum := len(handlers)
 	handlerName := nameOfFunc(handlers[handlerNum-1])
-	fmt.Println(fmt.Sprintf("%-6s %-25s --> %s (%d handlers)", httpMethod, absPath, handlerName, handlerNum))
+	printLog(fmt.Sprintf("[MINI] %-6s %-25s --> %s (%d handlers)", httpMethod, absPath, handlerName, handlerNum))
 }
 func logPanic(args ...interface{}) {
-	fmt.Println(fmt.Sprintf("[%s][\033[31m[Application Panic]\033[0m]%s", timeStr(), fmt.Sprint(args...)))
+	printLog(fmt.Sprintf("[%s][\033[31m[Application Panic]\033[0m]%s", timeStr(), fmt.Sprint(args...)))
 }
