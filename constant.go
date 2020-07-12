@@ -6,7 +6,7 @@ package minigo
 import "math"
 
 const (
-	maxHandleSize int8 = math.MaxUint8 / 2
+	maxHandleSize int8 = math.MaxInt8 / 2
 
 	reqMethodPost = "POST"
 
