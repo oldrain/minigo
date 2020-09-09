@@ -1,5 +1,5 @@
 # Minigo
-A fast, small but enough api framework for go.
+A fast, tiny, api framework for go.
 
 It is heavily influenced by Gin.
 ## Overview
